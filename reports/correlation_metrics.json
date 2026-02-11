@@ -1,0 +1,30 @@
+{
+  "dataset": "working_copy.csv",
+  "target_column": "MeanTemp",
+  "total_rows": 49794,
+  "numeric_columns": 7,
+  "rows_used_for_correlation": 49794,
+  "correlations": {
+    "STA": 0.16142961173137954,
+    "MO": 0.05912183971636741,
+    "Longitude": 0.04255080539456747,
+    "ELEV": -0.1321970958472403,
+    "Snowfall": -0.3915365197701171,
+    "Latitude": -0.6301254285672996
+  },
+  "top_positive": {
+    "STA": 0.16142961173137954,
+    "MO": 0.05912183971636741,
+    "Longitude": 0.04255080539456747,
+    "ELEV": -0.1321970958472403,
+    "Snowfall": -0.3915365197701171
+  },
+  "top_negative": {
+    "MO": 0.05912183971636741,
+    "Longitude": 0.04255080539456747,
+    "ELEV": -0.1321970958472403,
+    "Snowfall": -0.3915365197701171,
+    "Latitude": -0.6301254285672996
+  },
+  "multicollinearity": {}
+}
