@@ -1,0 +1,10 @@
+{
+  "original_rows": 110707,
+  "final_rows": 49794,
+  "rows_removed": 60913,
+  "original_columns": 31,
+  "final_columns": 8,
+  "columns_removed": 30,
+  "stations_removed": 5,
+  "duplicates_removed": 60913
+}

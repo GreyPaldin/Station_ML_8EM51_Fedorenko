@@ -1,0 +1,13 @@
+# dvc.yaml
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+      - src/prepare.py
+      - data/raw/Summary_of_Weather.csv
+      - data/raw/Weather_Station_Locations.csv
+    outs:
+      - data/processed/working_copy.csv
+    metrics:
+      - metrics/prepare_metrics.json:
+          cache: false
