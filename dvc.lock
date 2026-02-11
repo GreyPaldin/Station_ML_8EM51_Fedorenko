@@ -1,0 +1,26 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - path: data/raw/Summary_of_Weather.csv
+      hash: md5
+      md5: db1994d51f83b7d169617e243a7f343e
+      size: 11535950
+    - path: data/raw/Weather_Station_Locations.csv
+      hash: md5
+      md5: 2eeb4c7daf2efeef57105631ed752274
+      size: 8661
+    - path: src/prepare.py
+      hash: md5
+      md5: 8842497f5eaf028d19569fe08ede7ef4
+      size: 8187
+    outs:
+    - path: data/processed/working_copy.csv
+      hash: md5
+      md5: ec781829fe98fbff442b6bd98cded298
+      size: 2715796
+    - path: metrics/prepare_metrics.json
+      hash: md5
+      md5: e83e33ec97a94524ea6c3bf1efa221d1
+      size: 215
