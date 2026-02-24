@@ -10,7 +10,7 @@ WORKING_COPY_PATH = "data/processed/working_copy.csv"
 COLUMNS_TO_DELETE = ["WindGustSpd","DR","SPD",
 "MAX", "MIN", "MEA","SND","FT","FB","FTI","ITH","PGT",
 "TSHDSBRSGF","SD3","RHX","RHN","RVG","WTE","PoorWeather",
-"MinTemp","MaxTemp", "LAT","LON","NAME","STATE/COUNTRY ID","Date","PRCP","SNF","DA","YR"]
+"LAT","LON","MinTemp","MaxTemp","NAME","STATE/COUNTRY ID","Date","PRCP","SNF","DA","YR"] #"MinTemp","MaxTemp"
 WEATHER_STATION_ID = "STA"
 STATIONS_STATION_ID = "WBAN"
 PROBLEM_VALUE = 9999
@@ -110,6 +110,10 @@ def print_analysis(df, label=""):
     print(f"Строк: {len(df):,}")
     print(f"Колонок: {len(df.columns)}")
     print(f"Дупликатов: {df.duplicated().sum():,}")
+    
+
+def delite_T():
+    df['Precip'] = df['Precip'].replace('T', '0')
 
 # ==================== ИСПОЛНЕНИЕ ====================
 if __name__ == "__main__":
@@ -156,6 +160,9 @@ if __name__ == "__main__":
     # 8. Null строки
     print("\n8. Удаление Null строк:")
     df = delete_null_rows(df)
+    
+    # 8.1 Удаление T в Precip
+    delite_T()
     
     # 9. Сохранить
     df.to_csv(copy_path, index=False)

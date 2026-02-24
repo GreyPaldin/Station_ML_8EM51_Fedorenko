@@ -1,12 +1,12 @@
 {
   "total_rows": 49794,
-  "train_rows": 34850,
-  "val_rows": 9953,
-  "test_rows": 4991,
+  "train_rows": 34855,
+  "val_rows": 9958,
+  "test_rows": 4981,
   "train_ratio": 0.7,
   "val_ratio": 0.2,
   "test_ratio": 0.1,
-  "strategy": "monthly_balanced",
+  "strategy": "chronological",
   "months": [
     1,
     2,

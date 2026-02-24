@@ -3,9 +3,9 @@ split:
   val_ratio: 0.2
   test_ratio: 0.1
   target_column: "MeanTemp"
-  group_by_month: true
+  group_by_month: false
   random_state: 42
-  
+
 # ============================================
 # ПАРАМЕТРЫ ДЛЯ ЛИНЕЙНЫХ МОДЕЛЕЙ С РЕГУЛЯРИЗАЦИЕЙ
 # ============================================
