@@ -13,24 +13,24 @@ stages:
       size: 8661
     - path: src/prepare.py
       hash: md5
-      md5: 8842497f5eaf028d19569fe08ede7ef4
-      size: 8187
+      md5: 16b640689a35782a9fdc0e5a21e2b478
+      size: 8325
     outs:
     - path: data/processed/working_copy.csv
       hash: md5
-      md5: ec781829fe98fbff442b6bd98cded298
-      size: 2715796
+      md5: 4bf1c94c79415a24875618129d7cdc98
+      size: 6380217
     - path: metrics/prepare_metrics.json
       hash: md5
-      md5: e83e33ec97a94524ea6c3bf1efa221d1
-      size: 215
+      md5: 1ed0a373aee824d9779654fbf7642ad5
+      size: 216
   analyze:
     cmd: python src/correlation.py
     deps:
     - path: data/processed/working_copy.csv
       hash: md5
-      md5: ec781829fe98fbff442b6bd98cded298
-      size: 2715796
+      md5: 4bf1c94c79415a24875618129d7cdc98
+      size: 6380217
     - path: src/correlation.py
       hash: md5
       md5: 27fa7244ef1f12213e798ea25db2c4d7
@@ -38,27 +38,27 @@ stages:
     outs:
     - path: reports/correlation_heatmap.png
       hash: md5
-      md5: 8ca9c3f0edc52fe30be048f32798b8bc
-      size: 77942
+      md5: 41532b1ed04cc547abd2f79d40ab0323
+      size: 105326
     - path: reports/correlation_metrics.json
       hash: md5
-      md5: 713a61b94d872d9966bb88918163aee9
-      size: 834
+      md5: e7a3622a8cb546f62b98c5966a4cb6e6
+      size: 1347
     - path: reports/correlation_with_MeanTemp.png
       hash: md5
-      md5: ac37784c4d68578454b781559eed5f58
-      size: 49308
+      md5: 99e17bd349d361dfac8283cab64223a0
+      size: 56443
   split:
     cmd: python src/split.py
     deps:
     - path: data/processed/working_copy.csv
       hash: md5
-      md5: ec781829fe98fbff442b6bd98cded298
-      size: 2715796
+      md5: 4bf1c94c79415a24875618129d7cdc98
+      size: 6380217
     - path: src/split.py
       hash: md5
-      md5: c5eea4a7fcac07b2b4d06c95b49b448d
-      size: 3441
+      md5: 7b25e1d36c067c2771141cb796baba93
+      size: 3459
     params:
       params.yaml:
         split:
@@ -66,34 +66,122 @@ stages:
           val_ratio: 0.2
           test_ratio: 0.1
           target_column: MeanTemp
-          group_by_month: true
+          group_by_month: false
           random_state: 42
     outs:
     - path: data/processed/X_test.csv
       hash: md5
-      md5: af1d00cb5d7e2a8e2fed16f00b401b81
-      size: 213872
+      md5: 36a888a57f2fe8bccfa5208159866ab9
+      size: 553184
     - path: data/processed/X_train.csv
       hash: md5
-      md5: abe8d2e8d8280cb30afaa6b20c1c0d33
-      size: 1498108
+      md5: 6a086f3bedbe30bcfb1c045d18be56d6
+      size: 3857641
     - path: data/processed/X_val.csv
       hash: md5
-      md5: 33bd9f6b4281ef36ff8eafec89bfb720
-      size: 435622
+      md5: e3b3e0419247c1fac3476951d67acd31
+      size: 1118947
     - path: data/processed/y_test.csv
       hash: md5
-      md5: f17ee845b685b041ef6a6230fb80f117
-      size: 61944
+      md5: 36d684070cc423b73f7d5de6684245c9
+      size: 104611
     - path: data/processed/y_train.csv
       hash: md5
-      md5: 2b22f54a57392777e2a64ce7d98b7acd
-      size: 432010
+      md5: ddacc208952a4441cc79c30904909b88
+      size: 729067
     - path: data/processed/y_val.csv
       hash: md5
-      md5: 8e66cd174a9b5afa9db1e6c50b17ff9c
-      size: 124151
+      md5: 92abe2ba3d72c29b0d760f487ec59887
+      size: 208642
     - path: metrics/split_metrics.json
       hash: md5
-      md5: 65ccdc4040c2233a228fd9a0f92ec2a3
-      size: 314
+      md5: 2a1422ab5b08eead1c7d5da4f63399b5
+      size: 312
+  train_linear:
+    cmd: python src/train_linear.py
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 36a888a57f2fe8bccfa5208159866ab9
+      size: 553184
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: 6a086f3bedbe30bcfb1c045d18be56d6
+      size: 3857641
+    - path: data/processed/X_val.csv
+      hash: md5
+      md5: e3b3e0419247c1fac3476951d67acd31
+      size: 1118947
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 36d684070cc423b73f7d5de6684245c9
+      size: 104611
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: ddacc208952a4441cc79c30904909b88
+      size: 729067
+    - path: data/processed/y_val.csv
+      hash: md5
+      md5: 92abe2ba3d72c29b0d760f487ec59887
+      size: 208642
+    - path: src/train_linear.py
+      hash: md5
+      md5: 300d40d5d94ffc8054c07682f86bd2e9
+      size: 8383
+    params:
+      params.yaml:
+        linear_models:
+          ridge:
+            enabled: true
+            alpha: 1.0
+            fit_intercept: true
+            positive: false
+            max_iter: 1000
+            tol: 0.0001
+            solver: auto
+          lasso:
+            enabled: true
+            alpha: 0.01
+            fit_intercept: true
+            positive: false
+            max_iter: 1000
+            tol: 0.0001
+            selection: cyclic
+          elastic:
+            enabled: true
+            alpha: 0.01
+            l1_ratio: 0.5
+            fit_intercept: true
+            positive: false
+            max_iter: 1000
+            tol: 0.0001
+            selection: cyclic
+    outs:
+    - path: metrics/elastic_metrics.json
+      hash: md5
+      md5: 37b8df25699f7a2a509117df2706574d
+      size: 2204
+    - path: metrics/lasso_metrics.json
+      hash: md5
+      md5: b1ff6c8c6609948d2ec581759fcaacbe
+      size: 2158
+    - path: metrics/linear_summary.json
+      hash: md5
+      md5: 4e9b6c35a44265bec55a467f07312965
+      size: 681
+    - path: metrics/ridge_metrics.json
+      hash: md5
+      md5: f4e3c60b331f8746370d72b4f5a23939
+      size: 2173
+    - path: models/linear/elastic.pkl
+      hash: md5
+      md5: 0725436ce43fd306269df235c9f1cce5
+      size: 1040
+    - path: models/linear/lasso.pkl
+      hash: md5
+      md5: a4a82a66abc69664c17e5c68e8e23210
+      size: 1040
+    - path: models/linear/ridge.pkl
+      hash: md5
+      md5: 56f7058a856464816ecf3f5b09173915
+      size: 961

@@ -16,9 +16,9 @@ from sklearn.metrics import (
 )
 
 # ============================================
-# ЗАГРУЗКА ПАРАМЕТРОВ
+# ЗАГРУЗКА ПАРАМЕТРОВ (С ЯВНОЙ КОДИРОВКОЙ UTF-8)
 # ============================================
-with open('params.yaml', 'r') as f:
+with open('params.yaml', 'r', encoding='utf-8') as f:  # <- ВАЖНО!
     params = yaml.safe_load(f)
     model_params = params['linear_models']
 

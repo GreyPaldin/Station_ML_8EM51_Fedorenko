@@ -5,7 +5,7 @@ import json
 import os
 
 # ========== ЗАГРУЗКА ПАРАМЕТРОВ ==========
-with open('params.yaml', 'r') as f:
+with open('params.yaml', 'r', encoding='utf-8') as f:
     params = yaml.safe_load(f)['split']
 
 # ========== ЗАГРУЗКА ДАННЫХ ==========
