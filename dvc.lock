@@ -24,3 +24,76 @@ stages:
       hash: md5
       md5: e83e33ec97a94524ea6c3bf1efa221d1
       size: 215
+  analyze:
+    cmd: python src/correlation.py
+    deps:
+    - path: data/processed/working_copy.csv
+      hash: md5
+      md5: ec781829fe98fbff442b6bd98cded298
+      size: 2715796
+    - path: src/correlation.py
+      hash: md5
+      md5: 27fa7244ef1f12213e798ea25db2c4d7
+      size: 5443
+    outs:
+    - path: reports/correlation_heatmap.png
+      hash: md5
+      md5: 8ca9c3f0edc52fe30be048f32798b8bc
+      size: 77942
+    - path: reports/correlation_metrics.json
+      hash: md5
+      md5: 713a61b94d872d9966bb88918163aee9
+      size: 834
+    - path: reports/correlation_with_MeanTemp.png
+      hash: md5
+      md5: ac37784c4d68578454b781559eed5f58
+      size: 49308
+  split:
+    cmd: python src/split.py
+    deps:
+    - path: data/processed/working_copy.csv
+      hash: md5
+      md5: ec781829fe98fbff442b6bd98cded298
+      size: 2715796
+    - path: src/split.py
+      hash: md5
+      md5: c5eea4a7fcac07b2b4d06c95b49b448d
+      size: 3441
+    params:
+      params.yaml:
+        split:
+          train_ratio: 0.7
+          val_ratio: 0.2
+          test_ratio: 0.1
+          target_column: MeanTemp
+          group_by_month: true
+          random_state: 42
+    outs:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: af1d00cb5d7e2a8e2fed16f00b401b81
+      size: 213872
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: abe8d2e8d8280cb30afaa6b20c1c0d33
+      size: 1498108
+    - path: data/processed/X_val.csv
+      hash: md5
+      md5: 33bd9f6b4281ef36ff8eafec89bfb720
+      size: 435622
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: f17ee845b685b041ef6a6230fb80f117
+      size: 61944
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: 2b22f54a57392777e2a64ce7d98b7acd
+      size: 432010
+    - path: data/processed/y_val.csv
+      hash: md5
+      md5: 8e66cd174a9b5afa9db1e6c50b17ff9c
+      size: 124151
+    - path: metrics/split_metrics.json
+      hash: md5
+      md5: 65ccdc4040c2233a228fd9a0f92ec2a3
+      size: 314

@@ -11,3 +11,59 @@ stages:
     metrics:
       - metrics/prepare_metrics.json:
           cache: false
+  
+  analyze:
+    cmd: python src/correlation.py
+    deps:
+      - src/correlation.py
+      - data/processed/working_copy.csv
+    outs:
+      - reports/correlation_heatmap.png
+      - reports/correlation_with_MeanTemp.png
+    metrics:
+      - reports/correlation_metrics.json:
+          cache: false
+  
+  split:
+    cmd: python src/split.py
+    deps:
+      - src/split.py
+      - data/processed/working_copy.csv
+    params:
+      - split
+    outs:
+      - data/processed/X_train.csv
+      - data/processed/X_val.csv
+      - data/processed/X_test.csv
+      - data/processed/y_train.csv
+      - data/processed/y_val.csv
+      - data/processed/y_test.csv
+    metrics:
+      - metrics/split_metrics.json:
+          cache: false
+          
+  train_linear:
+    cmd: python src/train_linear.py
+    deps:
+      - src/train_linear.py
+      - data/processed/X_train.csv
+      - data/processed/X_val.csv
+      - data/processed/X_test.csv
+      - data/processed/y_train.csv
+      - data/processed/y_val.csv
+      - data/processed/y_test.csv
+    params:
+      - linear_models
+    outs:
+      - models/linear/ridge.pkl
+      - models/linear/lasso.pkl
+      - models/linear/elastic.pkl
+    metrics:
+      - metrics/ridge_metrics.json:
+          cache: false
+      - metrics/lasso_metrics.json:
+          cache: false
+      - metrics/elastic_metrics.json:
+          cache: false
+      - metrics/linear_summary.json:
+          cache: false

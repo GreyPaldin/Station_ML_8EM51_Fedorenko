@@ -1,0 +1,24 @@
+{
+  "total_rows": 49794,
+  "train_rows": 34850,
+  "val_rows": 9953,
+  "test_rows": 4991,
+  "train_ratio": 0.7,
+  "val_ratio": 0.2,
+  "test_ratio": 0.1,
+  "strategy": "monthly_balanced",
+  "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ]
+}
