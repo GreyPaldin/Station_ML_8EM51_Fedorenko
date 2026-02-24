@@ -67,3 +67,25 @@ stages:
           cache: false
       - metrics/linear_summary.json:
           cache: false
+          
+  learning_curves:
+      cmd: python src/learning_curves.py
+      deps:
+        - src/learning_curves.py
+        - data/processed/X_train.csv
+        - data/processed/X_val.csv
+        - data/processed/X_test.csv
+        - data/processed/y_train.csv
+        - data/processed/y_val.csv
+        - data/processed/y_test.csv
+      params:
+        - linear_models
+      outs:
+        - reports/learning_curves/
+      metrics:
+        - metrics/learning_curves/ridge_learning.json:
+            cache: false
+        - metrics/learning_curves/lasso_learning.json:
+            cache: false
+        - metrics/learning_curves/elastic_learning.json:
+            cache: false

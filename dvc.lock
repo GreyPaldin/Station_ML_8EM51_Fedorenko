@@ -185,3 +185,80 @@ stages:
       hash: md5
       md5: 56f7058a856464816ecf3f5b09173915
       size: 961
+  learning_curves:
+    cmd: python src/learning_curves.py
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 36a888a57f2fe8bccfa5208159866ab9
+      size: 553184
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: 6a086f3bedbe30bcfb1c045d18be56d6
+      size: 3857641
+    - path: data/processed/X_val.csv
+      hash: md5
+      md5: e3b3e0419247c1fac3476951d67acd31
+      size: 1118947
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 36d684070cc423b73f7d5de6684245c9
+      size: 104611
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: ddacc208952a4441cc79c30904909b88
+      size: 729067
+    - path: data/processed/y_val.csv
+      hash: md5
+      md5: 92abe2ba3d72c29b0d760f487ec59887
+      size: 208642
+    - path: src/learning_curves.py
+      hash: md5
+      md5: c292ee971c89e407c53b1f8f862159ca
+      size: 8269
+    params:
+      params.yaml:
+        linear_models:
+          ridge:
+            enabled: true
+            alpha: 1.0
+            fit_intercept: true
+            positive: false
+            max_iter: 1000
+            tol: 0.0001
+            solver: auto
+          lasso:
+            enabled: true
+            alpha: 0.01
+            fit_intercept: true
+            positive: false
+            max_iter: 1000
+            tol: 0.0001
+            selection: cyclic
+          elastic:
+            enabled: true
+            alpha: 0.01
+            l1_ratio: 0.5
+            fit_intercept: true
+            positive: false
+            max_iter: 1000
+            tol: 0.0001
+            selection: cyclic
+    outs:
+    - path: metrics/learning_curves/elastic_learning.json
+      hash: md5
+      md5: 73ce538f25a56f1e3084128d14a1820c
+      size: 755
+    - path: metrics/learning_curves/lasso_learning.json
+      hash: md5
+      md5: bd3185780b861406ab2e00dcbcbd311b
+      size: 755
+    - path: metrics/learning_curves/ridge_learning.json
+      hash: md5
+      md5: 16c826c4d3417c40e5260ce023af5be0
+      size: 753
+    - path: reports/learning_curves/
+      hash: md5
+      md5: 63359961c3cccf59155470fd88855365.dir
+      size: 755218
+      nfiles: 9
