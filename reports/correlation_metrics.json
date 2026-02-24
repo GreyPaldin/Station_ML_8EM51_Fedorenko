@@ -1,51 +1,40 @@
 {
   "dataset": "working_copy.csv",
   "target_column": "MeanTemp",
-  "total_rows": 83976,
-  "numeric_columns": 10,
-  "rows_used_for_correlation": 83976,
+  "total_rows": 75305,
+  "numeric_columns": 9,
+  "rows_used_for_correlation": 75305,
   "correlations": {
-    "MaxTemp": 0.9700551973799413,
-    "MinTemp": 0.9659424501060313,
-    "STA": 0.1211341470444375,
-    "Precip": 0.06495993980347764,
-    "MO": 0.06301122513657828,
-    "Longitude": 0.018957558167229185,
-    "ELEV": -0.1343129309684859,
-    "Snowfall": -0.35760668156123687,
-    "Latitude": -0.5671875314289632
+    "MinTemp": 0.9668896924495922,
+    "STA": 0.13042866981940487,
+    "Precip": 0.0768587216109007,
+    "MO": 0.06316787988963868,
+    "Longitude": 0.027657872647681162,
+    "ELEV": -0.1300977161091319,
+    "Snowfall": -0.3625823362706301,
+    "Latitude": -0.5774019096947783
   },
   "top_positive": {
-    "MaxTemp": 0.9700551973799413,
-    "MinTemp": 0.9659424501060313,
-    "STA": 0.1211341470444375,
-    "Precip": 0.06495993980347764,
-    "MO": 0.06301122513657828
+    "MinTemp": 0.9668896924495922,
+    "STA": 0.13042866981940487,
+    "Precip": 0.0768587216109007,
+    "MO": 0.06316787988963868,
+    "Longitude": 0.027657872647681162
   },
   "top_negative": {
-    "MO": 0.06301122513657828,
-    "Longitude": 0.018957558167229185,
-    "ELEV": -0.1343129309684859,
-    "Snowfall": -0.35760668156123687,
-    "Latitude": -0.5671875314289632
+    "MO": 0.06316787988963868,
+    "Longitude": 0.027657872647681162,
+    "ELEV": -0.1300977161091319,
+    "Snowfall": -0.3625823362706301,
+    "Latitude": -0.5774019096947783
   },
   "multicollinearity": {
     "threshold": 0.8,
     "pairs": [
       {
-        "col1": "MaxTemp",
-        "col2": "MinTemp",
-        "correlation": 0.8804792317054677
-      },
-      {
-        "col1": "MaxTemp",
-        "col2": "MeanTemp",
-        "correlation": 0.9700551973799413
-      },
-      {
         "col1": "MinTemp",
         "col2": "MeanTemp",
-        "correlation": 0.9659424501060313
+        "correlation": 0.9668896924495922
       }
     ]
   }

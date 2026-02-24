@@ -10,7 +10,7 @@ WORKING_COPY_PATH = "data/processed/working_copy.csv"
 COLUMNS_TO_DELETE = ["WindGustSpd","DR","SPD",
 "MAX", "MIN", "MEA","SND","FT","FB","FTI","ITH","PGT",
 "TSHDSBRSGF","SD3","RHX","RHN","RVG","WTE","PoorWeather",
-"LAT","LON","NAME","STATE/COUNTRY ID","Date","PRCP","SNF","DA","YR"] #"MinTemp","MaxTemp"
+"LAT","LON","MaxTemp","NAME","STATE/COUNTRY ID","Date","PRCP","SNF","DA","YR"] #"MinTemp","MaxTemp"
 WEATHER_STATION_ID = "STA"
 STATIONS_STATION_ID = "WBAN"
 PROBLEM_VALUE = 9999

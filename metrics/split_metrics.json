@@ -1,8 +1,8 @@
 {
-  "total_rows": 83976,
-  "train_rows": 58783,
-  "val_rows": 16795,
-  "test_rows": 8398,
+  "total_rows": 75305,
+  "train_rows": 52713,
+  "val_rows": 15061,
+  "test_rows": 7531,
   "train_ratio": 0.7,
   "val_ratio": 0.2,
   "test_ratio": 0.1,

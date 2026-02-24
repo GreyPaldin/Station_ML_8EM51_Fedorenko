@@ -1,10 +1,10 @@
 {
   "original_rows": 110707,
-  "final_rows": 83976,
-  "rows_removed": 26731,
+  "final_rows": 75305,
+  "rows_removed": 35402,
   "original_columns": 31,
-  "final_columns": 10,
-  "columns_removed": 28,
+  "final_columns": 9,
+  "columns_removed": 29,
   "stations_removed": 5,
-  "duplicates_removed": 26731
+  "duplicates_removed": 35402
 }
