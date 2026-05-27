@@ -1,0 +1,32 @@
+{
+  "models_trained": [
+    "tree_shallow",
+    "tree_medium",
+    "tree_deep"
+  ],
+  "best_by_r2": "tree_medium",
+  "best_by_rmse": "tree_medium",
+  "results": {
+    "tree_shallow": {
+      "test_r2": 0.7105937985835905,
+      "test_rmse": 2.5151245201854926,
+      "test_mae": 1.8482176945313549,
+      "depth": 3,
+      "leaves": 8
+    },
+    "tree_medium": {
+      "test_r2": 0.7511781657337695,
+      "test_rmse": 2.3321142270888244,
+      "test_mae": 1.6115182702892328,
+      "depth": 10,
+      "leaves": 886
+    },
+    "tree_deep": {
+      "test_r2": 0.6756945644140635,
+      "test_rmse": 2.6624575284760126,
+      "test_mae": 1.934523110454547,
+      "depth": 20,
+      "leaves": 21780
+    }
+  }
+}

@@ -2,12 +2,24 @@ import pandas as pd
 import numpy as np
 import json
 import os
-import matplotlib.pyplot as plt
-from sklearn.linear_model import Ridge, Lasso, ElasticNet
-from sklearn.metrics import mean_squared_error
-from sklearn.model_selection import learning_curve
-import yaml
 import joblib
+import matplotlib
+matplotlib.use('Agg')  # ← ЭТО РЕШАЕТ ПРОБЛЕМУ!
+import matplotlib.pyplot as plt
+from sklearn.neural_network import MLPRegressor
+from sklearn.metrics import (
+    mean_squared_error, mean_absolute_error, r2_score,
+    max_error, median_absolute_error
+)
+from sklearn.preprocessing import StandardScaler
+import yaml
+from datetime import datetime
+import time
+import multiprocessing
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from tqdm import tqdm
+import sys
+import threading
 
 # ========== ЗАГРУЗКА ПАРАМЕТРОВ ==========
 with open('params.yaml', 'r', encoding='utf-8') as f:

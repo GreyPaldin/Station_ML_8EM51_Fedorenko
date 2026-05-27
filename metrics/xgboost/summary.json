@@ -1,0 +1,26 @@
+{
+  "models_trained": [
+    "xgb_shallow",
+    "xgb_medium",
+    "xgb_deep"
+  ],
+  "best_by_r2": "xgb_shallow",
+  "best_by_rmse": "xgb_shallow",
+  "results": {
+    "xgb_shallow": {
+      "test_r2": 0.7033947032862373,
+      "test_rmse": 2.546214727937116,
+      "test_mae": 1.8678748318080414
+    },
+    "xgb_medium": {
+      "test_r2": 0.6493305271883187,
+      "test_rmse": 2.7685639205880412,
+      "test_mae": 1.9499326340405403
+    },
+    "xgb_deep": {
+      "test_r2": 0.5933864768049295,
+      "test_rmse": 2.9812368716683393,
+      "test_mae": 2.313131527752146
+    }
+  }
+}

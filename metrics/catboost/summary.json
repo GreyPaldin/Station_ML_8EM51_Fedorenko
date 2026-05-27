@@ -1,0 +1,29 @@
+{
+  "models_trained": [
+    "cb_shallow",
+    "cb_medium",
+    "cb_deep"
+  ],
+  "best_by_r2": "cb_shallow",
+  "best_by_rmse": "cb_shallow",
+  "results": {
+    "cb_shallow": {
+      "test_r2": 0.7249999462664634,
+      "test_rmse": 2.451726177260123,
+      "test_mae": 1.7372809143756358,
+      "best_iteration": 65
+    },
+    "cb_medium": {
+      "test_r2": 0.6932980440155456,
+      "test_rmse": 2.5891895621915655,
+      "test_mae": 1.8245461476001086,
+      "best_iteration": 101
+    },
+    "cb_deep": {
+      "test_r2": 0.6190801813395508,
+      "test_rmse": 2.885508508057061,
+      "test_mae": 2.0703985595037215,
+      "best_iteration": 499
+    }
+  }
+}

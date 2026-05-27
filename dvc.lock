@@ -262,3 +262,289 @@ stages:
       md5: f7f6c1bab72371f033979d61a504b388.dir
       size: 1009000
       nfiles: 12
+  train_tree:
+    cmd: python src/train_tree.py
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: af316fcfd99e827d0b7ac130f122d748
+      size: 410612
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: e7f3f4a2cf6b9e1a403980481aa8bdb5
+      size: 2870905
+    - path: data/processed/X_val.csv
+      hash: md5
+      md5: 9f16cdd48ecfd8435fd5159cfc8663ac
+      size: 832163
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 38ba649711f2118ff3c88bc92be4dc35
+      size: 93622
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: 84c59e2090a80c5ee68eaab0e878b2e8
+      size: 652660
+    - path: data/processed/y_val.csv
+      hash: md5
+      md5: ae0dafe6944a3cc6a079338d144178d9
+      size: 187022
+    - path: src/train_tree.py
+      hash: md5
+      md5: f33aeaf1bf1370445da15fdc2cc47a1c
+      size: 9433
+    params:
+      params.yaml:
+        tree_models:
+          tree_shallow:
+            enabled: true
+            max_depth: 3
+            min_samples_split: 10
+            min_samples_leaf: 5
+            max_features:
+            criterion: squared_error
+            splitter: best
+            random_state: 42
+          tree_medium:
+            enabled: true
+            max_depth: 10
+            min_samples_split: 5
+            min_samples_leaf: 2
+            max_features:
+            criterion: squared_error
+            splitter: best
+            random_state: 42
+          tree_deep:
+            enabled: true
+            max_depth: 20
+            min_samples_split: 2
+            min_samples_leaf: 1
+            max_features:
+            criterion: squared_error
+            splitter: best
+            random_state: 42
+    outs:
+    - path: metrics/tree/summary.json
+      hash: md5
+      md5: e4b0effbb97ef56f541796dd3951517f
+      size: 738
+    - path: metrics/tree/tree_deep_metrics.json
+      hash: md5
+      md5: f7dfaa894a3e0b7f75f0f52e8ffc323a
+      size: 3315
+    - path: metrics/tree/tree_medium_metrics.json
+      hash: md5
+      md5: e1698972b3af7b500aca0908cfd4d476
+      size: 3327
+    - path: metrics/tree/tree_shallow_metrics.json
+      hash: md5
+      md5: 27be3be66aa1662599033a94b8cc2a18
+      size: 3040
+    - path: models/tree/
+      hash: md5
+      md5: 2d28785a19e31266ed0ad79281bf97bd.dir
+      size: 3269235
+      nfiles: 3
+  plot_tree:
+    cmd: python src/plot_tree_viz.py
+    deps:
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: e7f3f4a2cf6b9e1a403980481aa8bdb5
+      size: 2870905
+    - path: models/tree/tree_deep.pkl
+      hash: md5
+      md5: 336df302d784776d660a06b38eda8961
+      size: 3137713
+    - path: models/tree/tree_medium.pkl
+      hash: md5
+      md5: 1a7e50d4b919cd365018221e8753d586
+      size: 128977
+    - path: models/tree/tree_shallow.pkl
+      hash: md5
+      md5: 31fc28d27bd8195a9a82ca56c36ed885
+      size: 2545
+    - path: src/plot_tree_viz.py
+      hash: md5
+      md5: 324e4ef37013174a896857068116d9ed
+      size: 2322
+    outs:
+    - path: reports/tree/trees/
+      hash: md5
+      md5: 661fa61fd942d36580e6757008be1725.dir
+      size: 3364960
+      nfiles: 6
+  train_catboost:
+    cmd: python src/train_catboost.py
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: af316fcfd99e827d0b7ac130f122d748
+      size: 410612
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: e7f3f4a2cf6b9e1a403980481aa8bdb5
+      size: 2870905
+    - path: data/processed/X_val.csv
+      hash: md5
+      md5: 9f16cdd48ecfd8435fd5159cfc8663ac
+      size: 832163
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 38ba649711f2118ff3c88bc92be4dc35
+      size: 93622
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: 84c59e2090a80c5ee68eaab0e878b2e8
+      size: 652660
+    - path: data/processed/y_val.csv
+      hash: md5
+      md5: ae0dafe6944a3cc6a079338d144178d9
+      size: 187022
+    - path: src/train_catboost.py
+      hash: md5
+      md5: 2ac2e076a3336ae772a47d31214f88e4
+      size: 10822
+    params:
+      params.yaml:
+        catboost_models:
+          cb_shallow:
+            enabled: true
+            iterations: 100
+            depth: 3
+            learning_rate: 0.1
+            l2_leaf_reg: 3
+            random_seed: 42
+            verbose: false
+            early_stopping_rounds: 20
+          cb_medium:
+            enabled: true
+            iterations: 300
+            depth: 6
+            learning_rate: 0.05
+            l2_leaf_reg: 5
+            random_seed: 42
+            verbose: false
+            early_stopping_rounds: 30
+          cb_deep:
+            enabled: true
+            iterations: 500
+            depth: 10
+            learning_rate: 0.03
+            l2_leaf_reg: 10
+            random_seed: 42
+            verbose: false
+            early_stopping_rounds: 50
+    outs:
+    - path: metrics/catboost/cb_deep_metrics.json
+      hash: md5
+      md5: 8da400c8a08645eac5d6305b40776c6e
+      size: 2798
+    - path: metrics/catboost/cb_medium_metrics.json
+      hash: md5
+      md5: 064f53d60f2a41911a2552b8cf190a65
+      size: 2800
+    - path: metrics/catboost/cb_shallow_metrics.json
+      hash: md5
+      md5: f459001091d84ce155fe3904a28a8849
+      size: 2801
+    - path: metrics/catboost/summary.json
+      hash: md5
+      md5: ee3056bd5addd0848830e197cee3d0e6
+      size: 687
+    - path: models/catboost/
+      hash: md5
+      md5: 47cf4d34b944c106ca241d85be913b6c.dir
+      size: 8356016
+      nfiles: 3
+  train_xgboost:
+    cmd: python src/train_xgboost.py
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: af316fcfd99e827d0b7ac130f122d748
+      size: 410612
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: e7f3f4a2cf6b9e1a403980481aa8bdb5
+      size: 2870905
+    - path: data/processed/X_val.csv
+      hash: md5
+      md5: 9f16cdd48ecfd8435fd5159cfc8663ac
+      size: 832163
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 38ba649711f2118ff3c88bc92be4dc35
+      size: 93622
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: 84c59e2090a80c5ee68eaab0e878b2e8
+      size: 652660
+    - path: data/processed/y_val.csv
+      hash: md5
+      md5: ae0dafe6944a3cc6a079338d144178d9
+      size: 187022
+    - path: src/train_xgboost.py
+      hash: md5
+      md5: 6c88b6f99f9c74e91528e61d70c2cf65
+      size: 10113
+    params:
+      params.yaml:
+        xgboost_models:
+          xgb_shallow:
+            enabled: true
+            n_estimators: 100
+            max_depth: 3
+            learning_rate: 0.1
+            subsample: 0.8
+            colsample_bytree: 0.8
+            reg_alpha: 0.1
+            reg_lambda: 1.0
+            random_state: 42
+            verbosity: 0
+          xgb_medium:
+            enabled: true
+            n_estimators: 300
+            max_depth: 6
+            learning_rate: 0.05
+            subsample: 0.8
+            colsample_bytree: 0.8
+            reg_alpha: 0.1
+            reg_lambda: 1.0
+            random_state: 42
+            verbosity: 0
+            early_stopping_rounds: 30
+          xgb_deep:
+            enabled: true
+            n_estimators: 500
+            max_depth: 10
+            learning_rate: 0.03
+            subsample: 0.7
+            colsample_bytree: 0.7
+            reg_alpha: 0.5
+            reg_lambda: 1.5
+            random_state: 42
+            verbosity: 0
+            early_stopping_rounds: 50
+    outs:
+    - path: metrics/xgboost/summary.json
+      hash: md5
+      md5: 2acac70fde7dfd1771b9e8ff6b2bdda9
+      size: 606
+    - path: metrics/xgboost/xgb_deep_metrics.json
+      hash: md5
+      md5: 007b43b454b6adfad82b54eb3f3ff3d3
+      size: 2861
+    - path: metrics/xgboost/xgb_medium_metrics.json
+      hash: md5
+      md5: 059e9b07260c866467393af403f7fd12
+      size: 2867
+    - path: metrics/xgboost/xgb_shallow_metrics.json
+      hash: md5
+      md5: c275389f4268abe3930a8e0695800131
+      size: 2838
+    - path: models/xgboost/
+      hash: md5
+      md5: 3c01449c6024fc4d8520c70bb9b077a0.dir
+      size: 21417621
+      nfiles: 3

@@ -77,3 +77,136 @@ linear_models:
     max_iter: 1000
     tol: 0.0001
     selection: 'cyclic'
+
+tree_models:
+  tree_shallow:
+    enabled: true
+    max_depth: 3
+    min_samples_split: 10
+    min_samples_leaf: 5
+    max_features: null
+    criterion: 'squared_error'
+    splitter: 'best'
+    random_state: 42
+  
+  tree_medium:
+    enabled: true
+    max_depth: 10
+    min_samples_split: 5
+    min_samples_leaf: 2
+    max_features: null
+    criterion: 'squared_error'
+    splitter: 'best'
+    random_state: 42
+  
+  tree_deep:
+    enabled: true
+    max_depth: 20
+    min_samples_split: 2
+    min_samples_leaf: 1
+    max_features: null
+    criterion: 'squared_error'
+    splitter: 'best'
+    random_state: 42
+
+catboost_models:
+    cb_shallow:
+      enabled: true
+      iterations: 100
+      depth: 3
+      learning_rate: 0.1
+      l2_leaf_reg: 3
+      random_seed: 42
+      verbose: false
+      early_stopping_rounds: 20
+      
+    cb_medium:
+      enabled: true
+      iterations: 300
+      depth: 6
+      learning_rate: 0.05
+      l2_leaf_reg: 5
+      random_seed: 42
+      verbose: false
+      early_stopping_rounds: 30
+      
+    cb_deep:
+      enabled: true
+      iterations: 500
+      depth: 10
+      learning_rate: 0.03
+      l2_leaf_reg: 10
+      random_seed: 42
+      verbose: false
+      early_stopping_rounds: 50
+
+xgboost_models:
+  xgb_shallow:
+    enabled: true
+    n_estimators: 100
+    max_depth: 3
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+    reg_alpha: 0.1
+    reg_lambda: 1.0
+    random_state: 42
+    verbosity: 0
+    
+  xgb_medium:
+    enabled: true
+    n_estimators: 300
+    max_depth: 6
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+    reg_alpha: 0.1
+    reg_lambda: 1.0
+    random_state: 42
+    verbosity: 0
+    early_stopping_rounds: 30
+    
+  xgb_deep:
+    enabled: true
+    n_estimators: 500
+    max_depth: 10
+    learning_rate: 0.03
+    subsample: 0.7
+    colsample_bytree: 0.7
+    reg_alpha: 0.5
+    reg_lambda: 1.5
+    random_state: 42
+    verbosity: 0
+    early_stopping_rounds: 50 
+
+neural_networks:
+  nn_small:
+    enabled: true
+    hidden_layer_sizes: [64, 32]           # ← ИСПРАВЛЕНО!
+    activation: 'relu'
+    solver: 'adam'
+    alpha: 0.0001
+    batch_size: 64
+    learning_rate_init: 0.001
+    max_iter: 200
+    early_stopping: true
+    validation_fraction: 0.1
+    n_iter_no_change: 10
+    random_state: 42
+    
+  nn_medium:
+    enabled: true
+    hidden_layer_sizes: [128, 64, 32]      # ← ИСПРАВЛЕНО!
+    activation: 'relu'
+    solver: 'adam'
+    alpha: 0.0001
+    batch_size: 32
+    learning_rate_init: 0.001
+    max_iter: 300
+    early_stopping: true
+    validation_fraction: 0.1
+    n_iter_no_change: 15
+    random_state: 42
+
+  nn_deep:
+    enabled: false  

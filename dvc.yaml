@@ -89,3 +89,112 @@ stages:
           cache: false
       - metrics/learning_curves/elastic_learning.json:
           cache: false
+
+  train_tree:
+    cmd: python src/train_tree.py
+    deps:
+      - src/train_tree.py
+      - data/processed/X_train.csv
+      - data/processed/X_val.csv
+      - data/processed/X_test.csv
+      - data/processed/y_train.csv
+      - data/processed/y_val.csv
+      - data/processed/y_test.csv
+    params:
+      - tree_models
+    outs:
+      - models/tree/
+    metrics:
+      - metrics/tree/tree_shallow_metrics.json:
+          cache: false
+      - metrics/tree/tree_medium_metrics.json:
+          cache: false
+      - metrics/tree/tree_deep_metrics.json:
+          cache: false
+      - metrics/tree/summary.json:
+          cache: false
+
+  plot_tree:
+    cmd: python src/plot_tree_viz.py
+    deps:
+      - src/plot_tree_viz.py
+      - models/tree/tree_shallow.pkl
+      - models/tree/tree_medium.pkl
+      - models/tree/tree_deep.pkl
+      - data/processed/X_train.csv
+    outs:
+      - reports/tree/trees/
+  
+  train_catboost:
+    cmd: python src/train_catboost.py
+    deps:
+      - src/train_catboost.py
+      - data/processed/X_train.csv
+      - data/processed/X_val.csv
+      - data/processed/X_test.csv
+      - data/processed/y_train.csv
+      - data/processed/y_val.csv
+      - data/processed/y_test.csv
+    params:
+      - catboost_models
+    outs:
+      - models/catboost/
+    metrics:
+      - metrics/catboost/cb_shallow_metrics.json:
+          cache: false
+      - metrics/catboost/cb_medium_metrics.json:
+          cache: false
+      - metrics/catboost/cb_deep_metrics.json:
+          cache: false
+      - metrics/catboost/summary.json:
+          cache: false 
+
+  train_xgboost:
+    cmd: python src/train_xgboost.py
+    deps:
+      - src/train_xgboost.py
+      - data/processed/X_train.csv
+      - data/processed/X_val.csv
+      - data/processed/X_test.csv
+      - data/processed/y_train.csv
+      - data/processed/y_val.csv
+      - data/processed/y_test.csv
+    params:
+      - xgboost_models
+    outs:
+      - models/xgboost/
+    metrics:
+      - metrics/xgboost/xgb_shallow_metrics.json:
+          cache: false
+      - metrics/xgboost/xgb_medium_metrics.json:
+          cache: false
+      - metrics/xgboost/xgb_deep_metrics.json:
+          cache: false
+      - metrics/xgboost/summary.json:
+          cache: false
+          
+  train_neural:
+    cmd: python src/train_neural_network.py
+    deps:
+      - src/train_neural_network.py
+      - data/processed/X_train.csv
+      - data/processed/X_val.csv
+      - data/processed/X_test.csv
+      - data/processed/y_train.csv
+      - data/processed/y_val.csv
+      - data/processed/y_test.csv
+    params:
+      - neural_networks
+    outs:
+      - models/neural/
+    metrics:
+      - metrics/neural/nn_small_metrics.json:
+          cache: false
+      - metrics/neural/nn_medium_metrics.json:
+          cache: false
+      - metrics/neural/nn_deep_metrics.json:
+          cache: false
+      - metrics/neural/summary.json:
+          cache: false
+      - metrics/neural/summary_pytorch.json:
+          cache: false
