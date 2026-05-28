@@ -33,8 +33,8 @@ stages:
       size: 4880416
     - path: src/correlation.py
       hash: md5
-      md5: 27fa7244ef1f12213e798ea25db2c4d7
-      size: 5443
+      md5: 789bd46e6ac1f606211dc1c31410dab2
+      size: 5403
     outs:
     - path: reports/correlation_heatmap.png
       hash: md5
@@ -57,8 +57,8 @@ stages:
       size: 4880416
     - path: src/split.py
       hash: md5
-      md5: 7b25e1d36c067c2771141cb796baba93
-      size: 3459
+      md5: 6de71f4db19238040f974b76761ac7f9
+      size: 3455
     params:
       params.yaml:
         split:
@@ -126,8 +126,8 @@ stages:
       size: 187022
     - path: src/train_linear.py
       hash: md5
-      md5: 300d40d5d94ffc8054c07682f86bd2e9
-      size: 8383
+      md5: b7c198a4218ac878220e93137b2fb284
+      size: 8344
     params:
       params.yaml:
         linear_models:
@@ -165,10 +165,6 @@ stages:
       hash: md5
       md5: 3e9f73e898ecfd4274c01c7707e2f39d
       size: 2125
-    - path: metrics/linear_summary.json
-      hash: md5
-      md5: b5762bdb6186f5ce70b35382ebdeabd5
-      size: 679
     - path: metrics/ridge_metrics.json
       hash: md5
       md5: 7a8c3efec72fd8c90ed1e49309f71585
@@ -214,8 +210,8 @@ stages:
       size: 187022
     - path: src/learning_curves.py
       hash: md5
-      md5: c996c6d87702cda205722c16e3e430ac
-      size: 11174
+      md5: 197cdccb48492f1cb4fa8c7cdcdcd6e1
+      size: 11100
     params:
       params.yaml:
         linear_models:
@@ -324,10 +320,6 @@ stages:
             splitter: best
             random_state: 42
     outs:
-    - path: metrics/tree/summary.json
-      hash: md5
-      md5: e4b0effbb97ef56f541796dd3951517f
-      size: 738
     - path: metrics/tree/tree_deep_metrics.json
       hash: md5
       md5: f7dfaa894a3e0b7f75f0f52e8ffc323a
@@ -366,8 +358,8 @@ stages:
       size: 2545
     - path: src/plot_tree_viz.py
       hash: md5
-      md5: 324e4ef37013174a896857068116d9ed
-      size: 2322
+      md5: 8507f842575e800fde662f7322d97b8f
+      size: 2302
     outs:
     - path: reports/tree/trees/
       hash: md5
@@ -403,8 +395,8 @@ stages:
       size: 187022
     - path: src/train_catboost.py
       hash: md5
-      md5: 2ac2e076a3336ae772a47d31214f88e4
-      size: 10822
+      md5: b390a5a6bc6b2e4ceb059abd4cdcea1d
+      size: 10778
     params:
       params.yaml:
         catboost_models:
@@ -448,10 +440,6 @@ stages:
       hash: md5
       md5: f459001091d84ce155fe3904a28a8849
       size: 2801
-    - path: metrics/catboost/summary.json
-      hash: md5
-      md5: ee3056bd5addd0848830e197cee3d0e6
-      size: 687
     - path: models/catboost/
       hash: md5
       md5: 47cf4d34b944c106ca241d85be913b6c.dir
@@ -486,8 +474,8 @@ stages:
       size: 187022
     - path: src/train_xgboost.py
       hash: md5
-      md5: 6c88b6f99f9c74e91528e61d70c2cf65
-      size: 10113
+      md5: ef7bb3dd435528c69a69813c35e43436
+      size: 10070
     params:
       params.yaml:
         xgboost_models:
@@ -527,10 +515,6 @@ stages:
             verbosity: 0
             early_stopping_rounds: 50
     outs:
-    - path: metrics/xgboost/summary.json
-      hash: md5
-      md5: 2acac70fde7dfd1771b9e8ff6b2bdda9
-      size: 606
     - path: metrics/xgboost/xgb_deep_metrics.json
       hash: md5
       md5: 007b43b454b6adfad82b54eb3f3ff3d3
@@ -577,63 +561,77 @@ stages:
       size: 187022
     - path: src/train_neural_network.py
       hash: md5
-      md5: 0b3eed6bc2af0fae5b3dcf7959d00d3a
-      size: 19424
+      md5: 4e9ad244168927e747b7141b42782cd4
+      size: 10297
     params:
       params.yaml:
         neural_networks:
           nn_small:
             enabled: true
             hidden_layer_sizes:
-            - 64
             - 32
+            - 16
             activation: relu
             solver: adam
-            alpha: 0.0001
+            alpha: 0.0
             batch_size: 64
             learning_rate_init: 0.001
-            max_iter: 200
+            max_iter: 500
             early_stopping: true
             validation_fraction: 0.1
-            n_iter_no_change: 10
+            n_iter_no_change: 15
+            tol: 0.0001
             random_state: 42
           nn_medium:
+            enabled: true
+            hidden_layer_sizes:
+            - 64
+            - 32
+            - 16
+            activation: relu
+            solver: adam
+            alpha: 0.0
+            batch_size: 32
+            learning_rate_init: 0.001
+            max_iter: 500
+            early_stopping: true
+            validation_fraction: 0.1
+            n_iter_no_change: 15
+            tol: 0.0001
+            random_state: 42
+          nn_deep:
             enabled: true
             hidden_layer_sizes:
             - 128
             - 64
             - 32
+            - 16
             activation: relu
             solver: adam
-            alpha: 0.0001
-            batch_size: 32
-            learning_rate_init: 0.001
-            max_iter: 300
+            alpha: 0.0
+            batch_size: 16
+            learning_rate_init: 0.0005
+            max_iter: 500
             early_stopping: true
             validation_fraction: 0.1
-            n_iter_no_change: 15
+            n_iter_no_change: 20
+            tol: 0.0001
             random_state: 42
-          nn_deep:
-            enabled: false
     outs:
     - path: metrics/neural/nn_deep_metrics.json
       hash: md5
-      md5: dec2c84d8de322781e3579d3bbc78d3f
-      size: 5460
+      md5: bad019d24423adbef82bab214caa74b1
+      size: 4859
     - path: metrics/neural/nn_medium_metrics.json
       hash: md5
-      md5: 4a3410ecedf1a89d581ed0639ce1803a
-      size: 4829
+      md5: 3a2302798e9377fe736f75c72dfa38ba
+      size: 4495
     - path: metrics/neural/nn_small_metrics.json
       hash: md5
-      md5: 658b4f5d1e401c57805fc04bab562ae4
-      size: 5416
-    - path: metrics/neural/summary.json
-      hash: md5
-      md5: 4c5925d70a6dfda71a6b743e83f17950
-      size: 827
+      md5: d6c93e9d40316e738f31ca2966b6ea93
+      size: 3910
     - path: models/neural/
       hash: md5
-      md5: 4a18bc6fbf17881c3a869ecd3d67fb3a.dir
-      size: 1469672
+      md5: 7efebc44bdb85f741c32f44d0354afd9.dir
+      size: 418024
       nfiles: 6
