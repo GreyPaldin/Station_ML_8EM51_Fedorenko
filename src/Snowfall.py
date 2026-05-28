@@ -7,24 +7,24 @@ def analyze_snowfall_column(dataset_path):
     """Анализ колонки Snowfall с детальной информацией"""
     
     print("="*60)
-    print("❄️ АНАЛИЗ КОЛОНКИ SNOWFALL")
+    print("АНАЛИЗ КОЛОНКИ SNOWFALL")
     print("="*60)
     
     # Проверяем существование файла
     if not os.path.exists(dataset_path):
-        print(f"❌ Файл не найден: {dataset_path}")
+        print(f"Файл не найден: {dataset_path}")
         print(f"   Текущая рабочая директория: {os.getcwd()}")
         return None
     
     # Загружаем данные
-    print(f"📁 Загружаю файл: {os.path.basename(dataset_path)}")
+    print(f"Загружаю файл: {os.path.basename(dataset_path)}")
     df = pd.read_csv(dataset_path)
-    print(f"✅ Загружено: {len(df):,} строк, {len(df.columns)} колонок")
+    print(f"Загружено: {len(df):,} строк, {len(df.columns)} колонок")
     
     # Проверяем наличие колонки Snowfall
     if 'Snowfall' not in df.columns:
-        print(f"\n❌ Колонка 'Snowfall' не найдена!")
-        print(f"📋 Доступные колонки:")
+        print(f"\nКолонка 'Snowfall' не найдена!")
+        print(f"Доступные колонки:")
         for i, col in enumerate(df.columns, 1):
             print(f"  {i:2}. {col}")
         return df
@@ -32,7 +32,7 @@ def analyze_snowfall_column(dataset_path):
     # Получаем данные колонки
     snowfall_col = df['Snowfall']
     
-    print(f"\n📊 ОСНОВНАЯ ИНФОРМАЦИЯ:")
+    print(f"\nОСНОВНАЯ ИНФОРМАЦИЯ:")
     print(f"   • Тип данных: {snowfall_col.dtype}")
     print(f"   • Уникальных значений: {snowfall_col.nunique():,}")
     print(f"   • Пропусков (NaN): {snowfall_col.isna().sum():,}")
@@ -42,7 +42,7 @@ def analyze_snowfall_column(dataset_path):
         print(f"     ({percent_null:.1f}% от всех строк)")
     
     # Базовые статистики
-    print(f"\n📈 БАЗОВАЯ СТАТИСТИКА:")
+    print(f"\nБАЗОВАЯ СТАТИСТИКА:")
     if snowfall_col.dtype in ['float64', 'int64']:
         print(f"   • Минимум: {snowfall_col.min():.2f}")
         print(f"   • Максимум: {snowfall_col.max():.2f}")
@@ -50,7 +50,7 @@ def analyze_snowfall_column(dataset_path):
         print(f"   • Медиана: {snowfall_col.median():.2f}")
         print(f"   • Стандартное отклонение: {snowfall_col.std():.2f}")
     else:
-        print(f"   ⚠️  Колонка не числовая, статистика недоступна")
+        print(f"   Колонка не числовая, статистика недоступна")
     
     # Анализ уникальных значений
     print(f"\n🔍 АНАЛИЗ УНИКАЛЬНЫХ ЗНАЧЕНИЙ:")
@@ -64,7 +64,7 @@ def analyze_snowfall_column(dataset_path):
     
     # Группировка по диапазонам (если числовая)
     if snowfall_col.dtype in ['float64', 'int64']:
-        print(f"\n📊 РАСПРЕДЕЛЕНИЕ ПО ДИАПАЗОНАМ:")
+        print(f"\nРАСПРЕДЕЛЕНИЕ ПО ДИАПАЗОНАМ:")
         
         # Создаем диапазоны
         snowfall_not_null = snowfall_col.dropna()
@@ -84,19 +84,19 @@ def analyze_snowfall_column(dataset_path):
                 print(f"     ⚠️  Не удалось создать диапазоны")
     
     # Вывод примеров
-    print(f"\n👀 ПРИМЕРЫ ЗНАЧЕНИЙ:")
+    print(f"\nПРИМЕРЫ ЗНАЧЕНИЙ:")
     print(f"   Первые 10 строк:")
     for i in range(min(10, len(df))):
         print(f"     Строка {i}: {snowfall_col.iloc[i]}")
     
     # Информация о типе данных
-    print(f"\n💡 ИНФОРМАЦИЯ О ТИПЕ ДАННЫХ:")
+    print(f"\nИНФОРМАЦИЯ О ТИПЕ ДАННЫХ:")
     print(f"   pandas dtype: {snowfall_col.dtype}")
     print(f"   Python type первого значения: {type(snowfall_col.iloc[0])}")
     
     # Проверка возможности преобразования
     if snowfall_col.dtype == 'object':
-        print(f"\n🔄 ПРОВЕРКА ВОЗМОЖНОСТИ ПРЕОБРАЗОВАНИЯ:")
+        print(f"\nПРОВЕРКА ВОЗМОЖНОСТИ ПРЕОБРАЗОВАНИЯ:")
         
         # Пробуем преобразовать в числовой тип
         numeric_converted = pd.to_numeric(snowfall_col, errors='coerce')
@@ -115,7 +115,7 @@ def analyze_snowfall_column(dataset_path):
             print(f"   • Проблемные значения (первые 10): {list(problematic)}")
     
     # Сохранение отчета
-    print(f"\n💾 СОХРАНЕНИЕ ОТЧЕТА...")
+    print(f"\nСОХРАНЕНИЕ ОТЧЕТА...")
     report_dir = "reports"
     os.makedirs(report_dir, exist_ok=True)
     
@@ -143,7 +143,7 @@ def analyze_snowfall_column(dataset_path):
             percent = (count / len(df)) * 100
             f.write(f"  {str(value)[:30]:<30} : {count:>8,} ({percent:5.1f}%)\n")
     
-    print(f"✅ Отчет сохранен: {report_path}")
+    print(f"Отчет сохранен: {report_path}")
     
     return df
 
@@ -152,18 +152,18 @@ def quick_snowfall_info(dataset_path):
     """Быстрый вывод информации о Snowfall"""
     
     if not os.path.exists(dataset_path):
-        print(f"❌ Файл не найден: {dataset_path}")
+        print(f"Файл не найден: {dataset_path}")
         return
     
     df = pd.read_csv(dataset_path)
     
     if 'Snowfall' not in df.columns:
-        print(f"❌ Колонка 'Snowfall' не найдена!")
+        print(f"Колонка 'Snowfall' не найдена!")
         return
     
     snowfall = df['Snowfall']
     
-    print("\n❄️ SNOWFALL - БЫСТРЫЙ АНАЛИЗ:")
+    print("\nSNOWFALL - БЫСТРЫЙ АНАЛИЗ:")
     print("-"*40)
     print(f"Тип: {snowfall.dtype}")
     print(f"Уникальных: {snowfall.nunique():,}")
@@ -182,7 +182,7 @@ def quick_snowfall_info(dataset_path):
 
 if __name__ == "__main__":
     # Полный анализ
-    print("🚀 ЗАПУСК ПОЛНОГО АНАЛИЗА SNOWFALL")
+    print("ЗАПУСК ПОЛНОГО АНАЛИЗА SNOWFALL")
     df = analyze_snowfall_column(YOUR_DATASET_PATH)
     
     # Быстрый анализ (раскомментировать если нужно)
@@ -194,7 +194,7 @@ if __name__ == "__main__":
         
         snowfall_col = df['Snowfall']
         if snowfall_col.dtype in ['float64', 'int64']:
-            print(f"\n📊 СОЗДАНИЕ ГИСТОГРАММЫ...")
+            print(f"\nСОЗДАНИЕ ГИСТОГРАММЫ...")
             
             plt.figure(figsize=(12, 6))
             
@@ -219,6 +219,6 @@ if __name__ == "__main__":
             # Сохраняем график
             plot_path = "reports/snowfall_distribution.png"
             plt.savefig(plot_path, dpi=300, bbox_inches='tight')
-            print(f"✅ График сохранен: {plot_path}")
+            print(f"График сохранен: {plot_path}")
             plt.show()
 

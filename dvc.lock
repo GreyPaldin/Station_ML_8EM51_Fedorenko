@@ -214,8 +214,8 @@ stages:
       size: 187022
     - path: src/learning_curves.py
       hash: md5
-      md5: 94b6320563d9f36ebb1fbccb9bb2c379
-      size: 10833
+      md5: c996c6d87702cda205722c16e3e430ac
+      size: 11174
     params:
       params.yaml:
         linear_models:
@@ -548,3 +548,92 @@ stages:
       md5: 3c01449c6024fc4d8520c70bb9b077a0.dir
       size: 21417621
       nfiles: 3
+  train_neural:
+    cmd: python src/train_neural_network.py
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: af316fcfd99e827d0b7ac130f122d748
+      size: 410612
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: e7f3f4a2cf6b9e1a403980481aa8bdb5
+      size: 2870905
+    - path: data/processed/X_val.csv
+      hash: md5
+      md5: 9f16cdd48ecfd8435fd5159cfc8663ac
+      size: 832163
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 38ba649711f2118ff3c88bc92be4dc35
+      size: 93622
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: 84c59e2090a80c5ee68eaab0e878b2e8
+      size: 652660
+    - path: data/processed/y_val.csv
+      hash: md5
+      md5: ae0dafe6944a3cc6a079338d144178d9
+      size: 187022
+    - path: src/train_neural_network.py
+      hash: md5
+      md5: 0b3eed6bc2af0fae5b3dcf7959d00d3a
+      size: 19424
+    params:
+      params.yaml:
+        neural_networks:
+          nn_small:
+            enabled: true
+            hidden_layer_sizes:
+            - 64
+            - 32
+            activation: relu
+            solver: adam
+            alpha: 0.0001
+            batch_size: 64
+            learning_rate_init: 0.001
+            max_iter: 200
+            early_stopping: true
+            validation_fraction: 0.1
+            n_iter_no_change: 10
+            random_state: 42
+          nn_medium:
+            enabled: true
+            hidden_layer_sizes:
+            - 128
+            - 64
+            - 32
+            activation: relu
+            solver: adam
+            alpha: 0.0001
+            batch_size: 32
+            learning_rate_init: 0.001
+            max_iter: 300
+            early_stopping: true
+            validation_fraction: 0.1
+            n_iter_no_change: 15
+            random_state: 42
+          nn_deep:
+            enabled: false
+    outs:
+    - path: metrics/neural/nn_deep_metrics.json
+      hash: md5
+      md5: dec2c84d8de322781e3579d3bbc78d3f
+      size: 5460
+    - path: metrics/neural/nn_medium_metrics.json
+      hash: md5
+      md5: 4a3410ecedf1a89d581ed0639ce1803a
+      size: 4829
+    - path: metrics/neural/nn_small_metrics.json
+      hash: md5
+      md5: 658b4f5d1e401c57805fc04bab562ae4
+      size: 5416
+    - path: metrics/neural/summary.json
+      hash: md5
+      md5: 4c5925d70a6dfda71a6b743e83f17950
+      size: 827
+    - path: models/neural/
+      hash: md5
+      md5: 4a18bc6fbf17881c3a869ecd3d67fb3a.dir
+      size: 1469672
+      nfiles: 6

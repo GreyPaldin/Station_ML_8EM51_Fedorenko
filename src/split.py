@@ -93,4 +93,4 @@ os.makedirs('metrics', exist_ok=True)
 with open('metrics/split_metrics.json', 'w') as f:
     json.dump(metrics, f, indent=2)
 
-print("\n✅ Разделение завершено")
+print("\nРазделение завершено")

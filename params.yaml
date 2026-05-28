@@ -182,31 +182,45 @@ xgboost_models:
 neural_networks:
   nn_small:
     enabled: true
-    hidden_layer_sizes: [64, 32]           # ← ИСПРАВЛЕНО!
+    hidden_layer_sizes: [32, 16]
     activation: 'relu'
     solver: 'adam'
-    alpha: 0.0001
+    alpha: 0.0
     batch_size: 64
     learning_rate_init: 0.001
-    max_iter: 200
+    max_iter: 500
     early_stopping: true
     validation_fraction: 0.1
-    n_iter_no_change: 10
+    n_iter_no_change: 15
+    tol: 1e-4
     random_state: 42
     
   nn_medium:
     enabled: true
-    hidden_layer_sizes: [128, 64, 32]      # ← ИСПРАВЛЕНО!
+    hidden_layer_sizes: [64, 32, 16]
     activation: 'relu'
     solver: 'adam'
-    alpha: 0.0001
+    alpha: 0.0
     batch_size: 32
     learning_rate_init: 0.001
-    max_iter: 300
+    max_iter: 500
     early_stopping: true
     validation_fraction: 0.1
     n_iter_no_change: 15
+    tol: 1e-4
     random_state: 42
-
+     
   nn_deep:
-    enabled: false  
+    enabled: true
+    hidden_layer_sizes: [128, 64, 32, 16]
+    activation: 'relu'
+    solver: 'adam'
+    alpha: 0.0
+    batch_size: 16
+    learning_rate_init: 0.0005
+    max_iter: 500
+    early_stopping: true
+    validation_fraction: 0.1
+    n_iter_no_change: 20
+    tol: 1e-4
+    random_state: 42

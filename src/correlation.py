@@ -13,14 +13,14 @@ def analyze_correlations(dataset_path, target_col, save_dir='reports'):
     
     # Загрузка данных
     df = pd.read_csv(dataset_path)
-    print(f"📊 Анализ: {os.path.basename(dataset_path)}")
+    print(f"Анализ: {os.path.basename(dataset_path)}")
     print(f"   Строк: {len(df):,}, Колонок: {len(df.columns)}")
     
     # Числовые колонки
     numeric_cols = df.select_dtypes(include=[np.number]).columns.tolist()
     
     if target_col not in numeric_cols:
-        print(f"❌ Целевая колонка '{target_col}' не найдена")
+        print(f"Целевая колонка '{target_col}' не найдена")
         return None
     
     # Удаляем строки с пропусками
@@ -67,7 +67,7 @@ def analyze_correlations(dataset_path, target_col, save_dir='reports'):
     bar_path = os.path.join(save_dir, f'correlation_with_{target_col}.png')
     plt.savefig(bar_path, dpi=150, bbox_inches='tight')
     plt.show()
-    print(f"💾 Диаграмма: {bar_path}")
+    print(f"Диаграмма: {bar_path}")
     
     # 3. СОХРАНЕНИЕ МЕТРИК
     metrics = {
@@ -106,19 +106,19 @@ def analyze_correlations(dataset_path, target_col, save_dir='reports'):
     metrics_path = os.path.join(save_dir, 'correlation_metrics.json')
     with open(metrics_path, 'w', encoding='utf-8') as f:
         json.dump(metrics, f, indent=2, ensure_ascii=False)
-    print(f"💾 Метрики: {metrics_path}")
+    print(f"Метрики: {metrics_path}")
     
     # 4. КРАТКИЙ ВЫВОД
-    print(f"\n📌 ТОП ПОЛОЖИТЕЛЬНЫХ КОРРЕЛЯЦИЙ С {target_col}:")
+    print(f"\nТОП ПОЛОЖИТЕЛЬНЫХ КОРРЕЛЯЦИЙ С {target_col}:")
     for col, val in target_corr.head(33).items():
         print(f"   {col}: {val:.3f}")
     
-    print(f"\n📌 ТОП ОТРИЦАТЕЛЬНЫХ КОРРЕЛЯЦИЙ С {target_col}:")
+    print(f"\nТОП ОТРИЦАТЕЛЬНЫХ КОРРЕЛЯЦИЙ С {target_col}:")
     for col, val in target_corr.tail(33).items():
         print(f"   {col}: {val:.3f}")
     
     if high_corr:
-        print(f"\n⚠️ МУЛЬТИКОЛЛИНЕАРНОСТЬ (> {threshold}): {len(high_corr)} пар")
+        print(f"\nМУЛЬТИКОЛЛИНЕАРНОСТЬ (> {threshold}): {len(high_corr)} пар")
     
     return df, corr_matrix, metrics
 
@@ -131,4 +131,4 @@ if __name__ == "__main__":
     if os.path.exists(DATASET_PATH):
         analyze_correlations(DATASET_PATH, TARGET_COLUMN)
     else:
-        print(f"❌ Файл не найден: {DATASET_PATH}")
+        print(f"Файл не найден: {DATASET_PATH}")

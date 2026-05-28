@@ -27,7 +27,7 @@ with open('params.yaml', 'r', encoding='utf-8') as f:
     model_params = params['linear_models']
 
 # ========== ЗАГРУЗКА ДАННЫХ ==========
-print("📥 Загрузка данных...")
+print("Загрузка данных...")
 X_train = pd.read_csv('data/processed/X_train.csv')
 y_train = pd.read_csv('data/processed/y_train.csv').squeeze()
 X_val = pd.read_csv('data/processed/X_val.csv')
@@ -43,7 +43,7 @@ os.makedirs('metrics/learning_curves', exist_ok=True)
 # ========== 1. КРИВАЯ ОБУЧЕНИЯ (размер выборки → ошибка) ==========
 def plot_learning_curve(model, model_name, X, y):
     """Кривая обучения: ошибка от размера выборки"""
-    print(f"📈 Строю learning curve для {model_name}...")
+    print(f"Строю learning curve для {model_name}...")
     
     train_sizes = np.linspace(0.1, 1.0, 10) * len(X)
     train_scores = []
@@ -86,15 +86,15 @@ def plot_learning_curve(model, model_name, X, y):
     with open(f'metrics/learning_curves/{model_name}_learning.json', 'w') as f:
         json.dump(data, f, indent=2)
     
-    print(f"   ✅ Сохранено")
+    print(f"   Сохранено")
 
 # ========== 2. КРИВАЯ СХОДИМОСТИ (итерации → ошибка) ==========
 def plot_convergence_curve(model, model_name, X, y, max_iter=1000):
     """Кривая сходимости: ошибка от числа итераций"""
-    print(f"📉 Строю convergence curve для {model_name}...")
+    print(f"Строю convergence curve для {model_name}...")
     
     if not hasattr(model, 'max_iter'):
-        print(f"   ⚠️ Модель {model_name} не поддерживает итерации")
+        print(f"   Модель {model_name} не поддерживает итерации")
         return
     
     train_errors = []
@@ -123,12 +123,12 @@ def plot_convergence_curve(model, model_name, X, y, max_iter=1000):
     
     plt.savefig(f'reports/learning_curves/{model_name}_convergence.png', dpi=150, bbox_inches='tight')
     plt.close()
-    print(f"   ✅ Сохранено")
+    print(f"   Сохранено")
 
 # ========== 3. КРИВАЯ ОСТАТКОВ ==========
 def plot_residuals(model, model_name, X_train, y_train, X_test, y_test):
     """Анализ остатков: предсказания vs ошибки"""
-    print(f"📊 Строю residuals plot для {model_name}...")
+    print(f"Строю residuals plot для {model_name}...")
     
     train_pred = model.predict(X_train)
     test_pred = model.predict(X_test)
@@ -172,15 +172,15 @@ def plot_residuals(model, model_name, X_train, y_train, X_test, y_test):
     plt.tight_layout()
     plt.savefig(f'reports/learning_curves/{model_name}_residuals.png', dpi=150, bbox_inches='tight')
     plt.close()
-    print(f"   ✅ Сохранено")
+    print(f"   Сохранено")
 
 # ========== 4. ВАЖНОСТЬ ПРИЗНАКОВ ==========
 def plot_feature_importance(model, model_name, feature_names):
     """Важность признаков (коэффициенты)"""
-    print(f"📊 Строю feature importance для {model_name}...")
+    print(f"Строю feature importance для {model_name}...")
     
     if not hasattr(model, 'coef_'):
-        print(f"   ⚠️ Модель {model_name} не имеет коэффициентов")
+        print(f"   Модель {model_name} не имеет коэффициентов")
         return
     
     coef = model.coef_
@@ -229,7 +229,7 @@ def plot_feature_importance(model, model_name, feature_names):
     with open(f'metrics/learning_curves/{model_name}_importance.json', 'w') as f:
         json.dump(data, f, indent=2)
     
-    print(f"   ✅ Сохранено")
+    print(f"   Сохранено")
 
 # ========== ОСНОВНОЙ ЦИКЛ ==========
 def get_model_params(model_dict):
@@ -247,7 +247,7 @@ for model_name, model in models.items():
         continue
         
     print(f"\n{'='*50}")
-    print(f"📊 Анализ для {model_name}")
+    print(f"Анализ для {model_name}")
     print(f"{'='*50}")
     
     # Обучаем модель
@@ -265,6 +265,6 @@ for model_name, model in models.items():
     # 4. Важность признаков
     plot_feature_importance(model, model_name, X_train.columns.tolist())
 
-print("\n✅ Все кривые обучения построены!")
-print(f"📁 Графики сохранены в: reports/learning_curves/")
-print(f"📁 Данные сохранены в: metrics/learning_curves/")
+print("\nВсе кривые обучения построены!")
+print(f"Графики сохранены в: reports/learning_curves/")
+print(f"Данные сохранены в: metrics/learning_curves/")

@@ -25,7 +25,7 @@ with open('params.yaml', 'r', encoding='utf-8') as f:  # <- ВАЖНО!
 # ============================================
 # ЗАГРУЗКА ДАННЫХ
 # ============================================
-print("📥 Загрузка данных...")
+print("Загрузка данных...")
 X_train = pd.read_csv('data/processed/X_train.csv')
 y_train = pd.read_csv('data/processed/y_train.csv').squeeze()
 
@@ -94,7 +94,7 @@ def train_and_save_model(model, model_name, params_used):
     Обучает модель, считает метрики и сохраняет результат
     """
     print(f"\n{'='*50}")
-    print(f"🚀 Обучение: {model_name}")
+    print(f"Обучение: {model_name}")
     print(f"{'='*50}")
     
     # Обучение
@@ -126,12 +126,12 @@ def train_and_save_model(model, model_name, params_used):
     }
     
     # Вывод результатов
-    print(f"\n📊 Метрики на валидации:")
+    print(f"\nМетрики на валидации:")
     print(f"   RMSE: {metrics['val']['rmse']:.4f}")
     print(f"   R²:   {metrics['val']['r2']:.4f}")
     print(f"   MAE:  {metrics['val']['mae']:.4f}")
     
-    print(f"\n📊 Метрики на тесте:")
+    print(f"\nМетрики на тесте:")
     print(f"   RMSE: {metrics['test']['rmse']:.4f}")
     print(f"   R²:   {metrics['test']['r2']:.4f}")
     print(f"   MAE:  {metrics['test']['mae']:.4f}")
@@ -142,12 +142,12 @@ def train_and_save_model(model, model_name, params_used):
     
     model_path = f'models/linear/{model_name}.pkl'
     joblib.dump(model, model_path)
-    print(f"\n💾 Модель сохранена: {model_path}")
+    print(f"\nМодель сохранена: {model_path}")
     
     metrics_path = f'metrics/{model_name}_metrics.json'
     with open(metrics_path, 'w') as f:
         json.dump(metrics, f, indent=2)
-    print(f"💾 Метрики сохранены: {metrics_path}")
+    print(f"Метрики сохранены: {metrics_path}")
     
     return metrics
 
@@ -214,7 +214,7 @@ if results:
         json.dump(summary, f, indent=2)
     
     print("\n" + "="*50)
-    print("📊 СВОДКА ПО МОДЕЛЯМ")
+    print("СВОДКА ПО МОДЕЛЯМ")
     print("="*50)
     print(f"Лучшая по RMSE: {summary['best_by_rmse']}")
     print(f"Лучшая по R²:   {summary['best_by_r2']}")
@@ -224,4 +224,4 @@ if results:
         print(f"  Val RMSE: {res['val_rmse']:.4f}, R²: {res['val_r2']:.4f}")
         print(f"  Test RMSE: {res['test_rmse']:.4f}, R²: {res['test_r2']:.4f}")
 
-print("\n✅ Обучение всех линейных моделей завершено!")
+print("\nОбучение всех линейных моделей завершено!")

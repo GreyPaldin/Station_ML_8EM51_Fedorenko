@@ -19,7 +19,7 @@ with open('params.yaml', 'r', encoding='utf-8') as f:
     xgb_params = params['xgboost_models']
 
 # ========== ЗАГРУЗКА ДАННЫХ ==========
-print("📥 Загрузка данных...")
+print("Загрузка данных...")
 X_train = pd.read_csv('data/processed/X_train.csv')
 y_train = pd.read_csv('data/processed/y_train.csv').squeeze()
 X_val = pd.read_csv('data/processed/X_val.csv')
@@ -75,7 +75,7 @@ def calculate_all_metrics(y_true, y_pred, y_train=None):
 
 # ========== КРИВАЯ ОБУЧЕНИЯ ==========
 def plot_learning_curve(model, model_name, X, y):
-    print(f"📈 Learning curve для {model_name}...")
+    print(f"Learning curve для {model_name}...")
     
     train_sizes = np.linspace(0.1, 1.0, 8) * len(X)
     train_scores = []
@@ -121,7 +121,7 @@ def plot_learning_curve(model, model_name, X, y):
 
 # ========== FEATURE IMPORTANCE ==========
 def plot_feature_importance(model, model_name, feature_names):
-    print(f"📊 Feature importance для {model_name}...")
+    print(f"Feature importance для {model_name}...")
     
     # Получаем важность признаков
     importance = model.feature_importances_
@@ -158,7 +158,7 @@ def plot_feature_importance(model, model_name, feature_names):
 # ========== ОБУЧЕНИЕ МОДЕЛИ ==========
 def train_and_save_model(model_config, model_name):
     print(f"\n{'='*50}")
-    print(f"⚡ Обучение XGBoost: {model_name}")
+    print(f"Обучение XGBoost: {model_name}")
     print(f"{'='*50}")
     
     # Убираем 'enabled' из параметров
@@ -196,7 +196,7 @@ def train_and_save_model(model_config, model_name):
     }
     
     # Вывод
-    print(f"\n📊 Метрики на тесте:")
+    print(f"\nМетрики на тесте:")
     print(f"   R²:   {metrics['test']['r2']:.4f}")
     print(f"   RMSE: {metrics['test']['rmse']:.4f}")
     print(f"   MAE:  {metrics['test']['mae']:.4f}")
@@ -212,13 +212,13 @@ def train_and_save_model(model_config, model_name):
     # Сохранение
     model_path = f'models/xgboost/{model_name}.json'
     model.save_model(model_path)
-    print(f"\n💾 Модель сохранена: {model_path}")
+    print(f"\nМодель сохранена: {model_path}")
     
     metrics = convert_to_serializable(metrics)
     metrics_path = f'metrics/xgboost/{model_name}_metrics.json'
     with open(metrics_path, 'w') as f:
         json.dump(metrics, f, indent=2)
-    print(f"💾 Метрики сохранены: {metrics_path}")
+    print(f"Метрики сохранены: {metrics_path}")
     
     return model, metrics
 
@@ -253,7 +253,7 @@ if results:
         json.dump(summary, f, indent=2)
     
     print("\n" + "="*50)
-    print("📊 СВОДКА ПО МОДЕЛЯМ XGBOOST")
+    print("СВОДКА ПО МОДЕЛЯМ XGBOOST")
     print("="*50)
     print(f"Лучшая по R²:   {summary['best_by_r2']}")
     print(f"Лучшая по RMSE: {summary['best_by_rmse']}")
@@ -262,4 +262,4 @@ if results:
         print(f"\n{name.upper()}:")
         print(f"  Test R²: {res['test_r2']:.4f}, RMSE: {res['test_rmse']:.4f}")
 
-print("\n✅ Обучение XGBoost завершено!")
+print("\nОбучение XGBoost завершено!")

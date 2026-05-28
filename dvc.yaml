@@ -196,5 +196,4 @@ stages:
           cache: false
       - metrics/neural/summary.json:
           cache: false
-      - metrics/neural/summary_pytorch.json:
-          cache: false
+      

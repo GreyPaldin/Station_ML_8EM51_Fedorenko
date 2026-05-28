@@ -51,10 +51,10 @@ for model_name in tree_params.keys():
         plt.savefig(f'reports/tree/trees/{model_name}_first_nodes.png', dpi=150, bbox_inches='tight')
         plt.close()
         
-        print(f"✅ Дерево {model_name} визуализировано")
+        print(f"Дерево {model_name} визуализировано")
         
     except FileNotFoundError:
-        print(f"⚠️ Модель {model_name} не найдена")
+        print(f"Модель {model_name} не найдена")
 
-print("\n✅ Визуализация деревьев завершена!")
-print(f"📁 Файлы сохранены в: reports/tree/trees/")
+print("\nВизуализация деревьев завершена!")
+print(f"Файлы сохранены в: reports/tree/trees/")
