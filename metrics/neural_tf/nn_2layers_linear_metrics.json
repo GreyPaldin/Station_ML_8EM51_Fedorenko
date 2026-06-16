@@ -1,0 +1,37 @@
+{
+  "model_name": "nn_2layers_linear",
+  "params": {
+    "enabled": true,
+    "layers": [
+      36,
+      1
+    ],
+    "epochs": 300,
+    "batch_size": 64,
+    "learning_rate": 0.0001,
+    "activation": "linear",
+    "dropout_rate": 0.0,
+    "patience": 50,
+    "alpha": 0.1
+  },
+  "train": {
+    "mse": 2.897712419374203,
+    "rmse": 1.702266847287523,
+    "mae": 1.3113314483470213,
+    "r2": 0.9656110785078348
+  },
+  "val": {
+    "mse": 2.582263773786291,
+    "rmse": 1.6069423679106511,
+    "mae": 1.1042010287487538,
+    "r2": 0.9599138783786997
+  },
+  "test": {
+    "mse": 8.521119508181787,
+    "rmse": 2.919095666157892,
+    "mae": 2.0923671263657018,
+    "r2": 0.6101608002718018
+  },
+  "epochs_trained": 75,
+  "tensorboard_logdir": "reports/neural_tf/tensorboard/nn_2layers_linear_20260616-230336"
+}

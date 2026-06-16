@@ -19,7 +19,7 @@ with open('params.yaml', 'r', encoding='utf-8') as f:
     tree_params = params['tree_models']
 
 # ========== ЗАГРУЗКА ДАННЫХ ==========
-print("📥 Загрузка данных...")
+print("Загрузка данных...")
 X_train = pd.read_csv('data/processed/X_train.csv')
 y_train = pd.read_csv('data/processed/y_train.csv').squeeze()
 X_val = pd.read_csv('data/processed/X_val.csv')
@@ -61,7 +61,7 @@ def calculate_all_metrics(y_true, y_pred, y_train=None):
 
 # ========== КРИВАЯ ОБУЧЕНИЯ ==========
 def plot_learning_curve(model, model_name, X, y):
-    print(f"📈 Learning curve для {model_name}...")
+    print(f"Learning curve для {model_name}...")
     
     train_sizes = np.linspace(0.1, 1.0, 10) * len(X)
     train_scores = []
@@ -100,7 +100,7 @@ def plot_learning_curve(model, model_name, X, y):
 
 # ========== АНАЛИЗ ВАЖНОСТИ ПРИЗНАКОВ ==========
 def plot_feature_importance(model, model_name, feature_names):
-    print(f"📊 Feature importance для {model_name}...")
+    print(f"Feature importance для {model_name}...")
     
     importance = model.feature_importances_
     indices = np.argsort(importance)[::-1]
@@ -123,7 +123,7 @@ def plot_feature_importance(model, model_name, feature_names):
 # ========== ОБУЧЕНИЕ МОДЕЛИ ==========
 def train_and_save_model(model, model_name, params_used):
     print(f"\n{'='*50}")
-    print(f"🌳 Обучение: {model_name}")
+    print(f"Обучение: {model_name}")
     print(f"{'='*50}")
     
     model.fit(X_train, y_train)
@@ -166,7 +166,7 @@ def train_and_save_model(model, model_name, params_used):
     metrics['feature_importance_sorted'] = importance_data
     
     # Вывод
-    print(f"\n📊 Метрики на тесте:")
+    print(f"\nМетрики на тесте:")
     print(f"   R²:   {metrics['test']['r2']:.4f}")
     print(f"   RMSE: {metrics['test']['rmse']:.4f}")
     print(f"   MAE:  {metrics['test']['mae']:.4f}")
@@ -176,12 +176,12 @@ def train_and_save_model(model, model_name, params_used):
     # Сохранение
     model_path = f'models/tree/{model_name}.pkl'
     joblib.dump(model, model_path)
-    print(f"\n💾 Модель сохранена: {model_path}")
+    print(f"\nМодель сохранена: {model_path}")
     
     metrics_path = f'metrics/tree/{model_name}_metrics.json'
     with open(metrics_path, 'w') as f:
         json.dump(metrics, f, indent=2)
-    print(f"💾 Метрики сохранены: {metrics_path}")
+    print(f"Метрики сохранены: {metrics_path}")
     
     return model, metrics
 
@@ -221,7 +221,7 @@ if results:
         json.dump(summary, f, indent=2)
     
     print("\n" + "="*50)
-    print("📊 СВОДКА ПО МОДЕЛЯМ ДЕРЕВА")
+    print("СВОДКА ПО МОДЕЛЯМ ДЕРЕВА")
     print("="*50)
     print(f"Лучшая по R²:   {summary['best_by_r2']}")
     print(f"Лучшая по RMSE: {summary['best_by_rmse']}")

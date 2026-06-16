@@ -1,0 +1,37 @@
+{
+  "model_name": "nn_deep_reg",
+  "params": {
+    "enabled": true,
+    "layers": [
+      128,
+      64,
+      32,
+      16
+    ],
+    "epochs": 600,
+    "batch_size": 64,
+    "learning_rate": 0.0001,
+    "dropout_rate": 0.2,
+    "patience": 60
+  },
+  "train": {
+    "mse": 2.420290060988595,
+    "rmse": 1.5557281449496874,
+    "mae": 1.1280238759441967,
+    "r2": 0.9712769409624232
+  },
+  "val": {
+    "mse": 3.4362473052063964,
+    "rmse": 1.8537117643275602,
+    "mae": 1.3008247856585746,
+    "r2": 0.9466569493032864
+  },
+  "test": {
+    "mse": 12.426805475043627,
+    "rmse": 3.5251674392918737,
+    "mae": 2.453620179843138,
+    "r2": 0.43147659214056744
+  },
+  "epochs_trained": 84,
+  "tensorboard_logdir": "reports/neural_tf/tensorboard/nn_deep_reg_20260616-215217"
+}

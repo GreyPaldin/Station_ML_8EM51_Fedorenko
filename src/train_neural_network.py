@@ -12,6 +12,7 @@ from sklearn.preprocessing import StandardScaler
 import yaml
 import time
 import sys
+improt tensorboard
 
 # ========== ЗАГРУЗКА ПАРАМЕТРОВ ==========
 print("Загрузка параметров...")

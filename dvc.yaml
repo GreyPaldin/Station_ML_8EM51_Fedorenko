@@ -65,8 +65,7 @@ stages:
           cache: false
       - metrics/elastic_metrics.json:
           cache: false
-      - metrics/linear_summary.json:
-          cache: false
+      
           
   learning_curves:
     cmd: python src/learning_curves.py
@@ -111,8 +110,7 @@ stages:
           cache: false
       - metrics/tree/tree_deep_metrics.json:
           cache: false
-      - metrics/tree/summary.json:
-          cache: false
+      
 
   plot_tree:
     cmd: python src/plot_tree_viz.py
@@ -146,8 +144,7 @@ stages:
           cache: false
       - metrics/catboost/cb_deep_metrics.json:
           cache: false
-      - metrics/catboost/summary.json:
-          cache: false 
+    
 
   train_xgboost:
     cmd: python src/train_xgboost.py
@@ -169,8 +166,6 @@ stages:
       - metrics/xgboost/xgb_medium_metrics.json:
           cache: false
       - metrics/xgboost/xgb_deep_metrics.json:
-          cache: false
-      - metrics/xgboost/summary.json:
           cache: false
           
   train_neural:
@@ -194,6 +189,26 @@ stages:
           cache: false
       - metrics/neural/nn_deep_metrics.json:
           cache: false
-      - metrics/neural/summary.json:
-          cache: false
-      
+    
+  train_neural_tf:
+    cmd: .venv_tf\Scripts\python.exe src/train_neural_tf.py
+    deps:
+      - src/train_neural_tf.py
+      - data/processed/X_train.csv
+      - data/processed/X_val.csv
+      - data/processed/X_test.csv
+      - data/processed/y_train.csv
+      - data/processed/y_val.csv
+      - data/processed/y_test.csv
+    params:
+      - neural_networks_tf
+    outs:
+      - models/neural_tf/
+      - reports/neural_tf/
+    metrics:
+      - metrics/neural_tf/nn_small_metrics.json
+      - metrics/neural_tf/nn_medium_metrics.json
+      - metrics/neural_tf/nn_deep_metrics.json
+      - metrics/neural_tf/summary.json
+
+  

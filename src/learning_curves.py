@@ -4,7 +4,7 @@ import json
 import os
 import joblib
 import matplotlib
-matplotlib.use('Agg')  # ← ЭТО РЕШАЕТ ПРОБЛЕМУ!
+matplotlib.use('Agg') 
 import matplotlib.pyplot as plt
 from sklearn.neural_network import MLPRegressor
 from sklearn.metrics import (

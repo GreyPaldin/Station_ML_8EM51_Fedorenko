@@ -51,7 +51,7 @@
     "residuals_skew": -0.5076469131343678
   },
   "n_iter": 46,
-  "training_time_sec": 10.033105611801147,
+  "training_time_sec": 10.744513273239136,
   "n_features": 8,
   "n_samples": {
     "train": 52696,

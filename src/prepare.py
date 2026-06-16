@@ -67,7 +67,7 @@ def convert_snowfall_to_float_simple(df):
     Не-цифры становятся NaN.
     """
     if 'Snowfall' in df.columns:
-        print(f"🔄 Snowfall: {df['Snowfall'].dtype} -> float")
+        print(f"Snowfall: {df['Snowfall'].dtype} -> float")
         df['Snowfall'] = pd.to_numeric(df['Snowfall'], errors='coerce')
         nulls_added = df['Snowfall'].isna().sum() - df['Snowfall'].isna().sum()
         if nulls_added > 0:

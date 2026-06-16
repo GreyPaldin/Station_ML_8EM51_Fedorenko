@@ -1,0 +1,35 @@
+{
+  "model_name": "nn_alternative",
+  "params": {
+    "enabled": true,
+    "layers": [
+      32,
+      16
+    ],
+    "epochs": 500,
+    "batch_size": 128,
+    "learning_rate": 0.001,
+    "dropout_rate": 0.0,
+    "patience": 50
+  },
+  "train": {
+    "mse": 1.7643211175195528,
+    "rmse": 1.3282775001932212,
+    "mae": 0.967025170503759,
+    "r2": 0.9790617246930072
+  },
+  "val": {
+    "mse": 6.157668178923141,
+    "rmse": 2.481464925990924,
+    "mae": 1.8259633018344343,
+    "r2": 0.904410603583694
+  },
+  "test": {
+    "mse": 13.681728288757542,
+    "rmse": 3.698882032284558,
+    "mae": 3.1248987765081004,
+    "r2": 0.37406417057446284
+  },
+  "epochs_trained": 56,
+  "tensorboard_logdir": "reports/neural_tf/tensorboard/nn_alternative_20260616-215049"
+}

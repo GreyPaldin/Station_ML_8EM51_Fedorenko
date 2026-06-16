@@ -1,0 +1,35 @@
+{
+  "model_name": "nn_best",
+  "params": {
+    "enabled": true,
+    "layers": [
+      64,
+      32
+    ],
+    "epochs": 500,
+    "batch_size": 256,
+    "learning_rate": 0.0005,
+    "dropout_rate": 0.0,
+    "patience": 50
+  },
+  "train": {
+    "mse": 1.4710371050868318,
+    "rmse": 1.2128631848179876,
+    "mae": 0.8777724679617633,
+    "r2": 0.9825423050332172
+  },
+  "val": {
+    "mse": 3.0591831528963,
+    "rmse": 1.749052072665734,
+    "mae": 1.234535314227612,
+    "r2": 0.9525103557685648
+  },
+  "test": {
+    "mse": 34.259778371406924,
+    "rmse": 5.853185318389204,
+    "mae": 4.852698116562295,
+    "r2": -0.5673767478968896
+  },
+  "epochs_trained": 101,
+  "tensorboard_logdir": "reports/neural_tf/tensorboard/nn_best_20260616-214910"
+}

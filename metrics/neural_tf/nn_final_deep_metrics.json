@@ -1,0 +1,37 @@
+{
+  "model_name": "nn_final_deep",
+  "params": {
+    "enabled": true,
+    "layers": [
+      16,
+      8
+    ],
+    "epochs": 600,
+    "batch_size": 128,
+    "learning_rate": 0.0005,
+    "activation": "relu",
+    "dropout_rate": 0.0,
+    "l2_reg": 0.001,
+    "patience": 100
+  },
+  "train": {
+    "mse": 1.5550662070291985,
+    "rmse": 1.247022937651589,
+    "mae": 0.9062915292075328,
+    "r2": 0.9815450804051165
+  },
+  "val": {
+    "mse": 4.2055984775156485,
+    "rmse": 2.0507555869765777,
+    "mae": 1.422421086465916,
+    "r2": 0.93471382212327
+  },
+  "test": {
+    "mse": 44.91083724330857,
+    "rmse": 6.701554837745385,
+    "mae": 6.0250353027511805,
+    "r2": -1.0546601691531245
+  },
+  "epochs_trained": 162,
+  "tensorboard_logdir": "reports/neural_tf/tensorboard/nn_final_deep_20260616-222023"
+}

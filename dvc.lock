@@ -13,8 +13,8 @@ stages:
       size: 8661
     - path: src/prepare.py
       hash: md5
-      md5: dd35345ed01e89a5d34cff5a11ad1a46
-      size: 8335
+      md5: 61f50cf2b50529455743eeb028b3269b
+      size: 8330
     outs:
     - path: data/processed/working_copy.csv
       hash: md5
@@ -635,3 +635,88 @@ stages:
       md5: 7efebc44bdb85f741c32f44d0354afd9.dir
       size: 418024
       nfiles: 6
+  train_neural_tf:
+    cmd: .venv_tf\Scripts\python.exe src/train_neural_tf.py
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: af316fcfd99e827d0b7ac130f122d748
+      size: 410612
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: e7f3f4a2cf6b9e1a403980481aa8bdb5
+      size: 2870905
+    - path: data/processed/X_val.csv
+      hash: md5
+      md5: 9f16cdd48ecfd8435fd5159cfc8663ac
+      size: 832163
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 38ba649711f2118ff3c88bc92be4dc35
+      size: 93622
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: 84c59e2090a80c5ee68eaab0e878b2e8
+      size: 652660
+    - path: data/processed/y_val.csv
+      hash: md5
+      md5: ae0dafe6944a3cc6a079338d144178d9
+      size: 187022
+    - path: src/train_neural_tf.py
+      hash: md5
+      md5: d801c02a8458cf65956e28be41c99d21
+      size: 11067
+    params:
+      params.yaml:
+        neural_networks_tf:
+          nn_small:
+            layers:
+            - 64
+            - 32
+            epochs: 300
+            batch_size: 64
+            learning_rate: 0.001
+          nn_medium:
+            layers:
+            - 128
+            - 64
+            - 32
+            epochs: 400
+            batch_size: 32
+            learning_rate: 0.001
+          nn_deep:
+            layers:
+            - 256
+            - 128
+            - 64
+            - 32
+            epochs: 500
+            batch_size: 16
+            learning_rate: 0.0005
+    outs:
+    - path: metrics/neural_tf/nn_deep_metrics.json
+      hash: md5
+      md5: 2d02b4dce275c49304783e70d7b29b35
+      size: 736
+    - path: metrics/neural_tf/nn_medium_metrics.json
+      hash: md5
+      md5: e57fa70d11ab8237845b83b6899edf56
+      size: 727
+    - path: metrics/neural_tf/nn_small_metrics.json
+      hash: md5
+      md5: 0eec64535e85f49de7c48a40cfd8dcff
+      size: 711
+    - path: metrics/neural_tf/summary.json
+      hash: md5
+      md5: a8aa01f7d708e8f9c284493bf9009897
+      size: 640
+    - path: models/neural_tf/
+      hash: md5
+      md5: a2e9e7fa69e9d15a969effc4ddb2d990.dir
+      size: 926769
+      nfiles: 3
+    - path: reports/neural_tf/
+      hash: md5
+      md5: 415ae0121ba175af972efe858ab6fe8d.dir
+      size: 4529591
+      nfiles: 30
